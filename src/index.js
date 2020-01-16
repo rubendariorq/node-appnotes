@@ -6,6 +6,7 @@ const session = require('express-session');
 
 //Initialization
 const app = express();
+require('./database');
 
 //Settings
 app.set('port', process.env.PORT || 3000);
@@ -30,8 +31,12 @@ app.use(session({
 //Gobal variables
 
 //Routes
+app.use(require('./routes/index'));
+app.use(require('./routes/notes'));
+app.use(require('./routes/users'));
 
 //Static files
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Server initialization
 app.listen(app.get('port'), () => {
