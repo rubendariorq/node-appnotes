@@ -10,6 +10,11 @@ router.get('/users/signup', (req, res) => {
     res.render('users/signup');
 });
 
+router.get('/users/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
+
 router.post('/users/signin', passport.authenticate('local', {
     successRedirect: '/notes',
     failureRedirect: '/users/signin',
